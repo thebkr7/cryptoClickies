@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import Explosion from "react-explode/Explosion1";
-import Confetti from 'react-dom-confetti';
 import './components.scss';
 
 
@@ -13,25 +11,10 @@ class ItemStore extends Component {
   }
 
 
-
   render() {
-
-    const config = {
-      angle: 90,
-      spread: 45,
-      startVelocity: 10,
-      elementCount: 50,
-      decay: 0.95
-    };
 
     return (
       <div>
-
-
-        {/* <Explosion size="40" delay={0} repeatDelay={0.1} repeat={1} /> */}
-        <Confetti active={ this.state.active } config={ config }/>
-
-
           <div className="sidebar">
           <div className="stone gametile"></div>
           <div className="stone gametile"></div>

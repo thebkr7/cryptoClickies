@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
 import localStorage from 'localStorage';
+import Confetti from 'react-dom-confetti';
+
 import Progress from './components/progress.js';
 import ItemStore from './components/itemStore.js';
 
@@ -18,6 +20,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      active: false,
       clickCount: 0,
       clickRate: 1,
       tillNextLevel: 1000,
@@ -75,33 +78,14 @@ class App extends Component {
       clickCount: clickCount,
       mouseDown: true,
       clicksSaved: false,
+      active: !this.state.active,
     });
   }
 
   mouseUp = () => {
     this.setState({
       mouseDown: false,
-
-    });
-  }
-
-  saveClicks = () => {
-
-    //saves every 50 clicks
-    // if ((this.clicksSaved / 50) % 2 == 0) {
-    //   axios.post('/count', {
-    //     clicks: context.state.clickCount,
-    //   })
-    //     .then(function (response) {
-    //       console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // };
-
-    this.setState({
-      clicksSaved: true,
+      active: !this.state.active,
     });
   }
 
@@ -121,24 +105,20 @@ class App extends Component {
   }
 
   render() {
+
+    const config = {
+      angle: 60,
+      spread: 45,
+      startVelocity: 10,
+      elementCount: 20,
+      decay: 0.95
+    };
+
     return (
       <div>
         <section class='hero has-background-black is-bold is-fullheight is-vertical-center'>
 
           <Progress clickCount={this.state.clickCount} tillNextLevel={this.state.tillNextLevel} mouseDown={this.state.mouseDown} />
-
-          {/* <div className='top-score-bar'>
-            <div className='columns'>
-              <div className='column is-5'>
-                <figure class="image is-48x48 is-centered">
-                  <img src={gems} />
-                </figure>
-              </div>
-              <div className='column is-7'>
-                <div className='title has-text-white'>{this.state.clickCount}</div>
-              </div>
-            </div>
-          </div> */}
 
           <div class="hero-body">
             <div class="container is-vertical-center">
@@ -155,6 +135,7 @@ class App extends Component {
                   <div className='column'>
                     <div className='is-vertical-center'>
                       <figure class="image height-auto" onMouseDown={()=>{this.incrementClick()}} onMouseUp={()=>{this.mouseUp()}}>
+                        <Confetti className='overlay' active={ this.state.active } config={ config }/>
                         {!this.state.mouseDown &&
                           <img src={this.state.upImage} />
                         }
