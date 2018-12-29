@@ -13,7 +13,7 @@ import level0Down from './assets/clicked.png';
 import level1Up from './assets/level1Up.png';
 import level1Down from './assets/level1Down.png';
 import item1 from './assets/item1.png';
-import gems from './assets/gems.png';
+// import gems from './assets/gems.png';
 
 
 class App extends Component {
@@ -116,16 +116,12 @@ class App extends Component {
 
     return (
       <div>
-        <section class='hero has-background-black is-bold is-fullheight is-vertical-center'>
-
-          <Progress clickCount={this.state.clickCount} tillNextLevel={this.state.tillNextLevel} mouseDown={this.state.mouseDown} />
+        <section class='hero has-background-black is-bold is-fullheight'>
 
           <div class="hero-body">
             <div class="container is-vertical-center">
-              <div>
 
                 <div className='columns'>
-
                   <div className='column is-3'>
                     <br/>
                     <br/>
@@ -148,14 +144,11 @@ class App extends Component {
                       {this.state.clickCount}
                     </h1>
                   </div>
-
                 </div>
-                
-              </div>
+
             </div>
           </div>
-
-
+          <Progress clickCount={this.state.clickCount} tillNextLevel={this.state.tillNextLevel} mouseDown={this.state.mouseDown} />
         </section>
         
       </div>

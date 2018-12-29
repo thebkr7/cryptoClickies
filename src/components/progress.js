@@ -12,7 +12,7 @@ class Progress extends Component {
 
   render() {
     return (
-      <div className='margin-top'>
+      <div className='margin-bottom'>
         <progress className={`progress is-info ${this.props.mouseDown ? '' : ''}`} value={this.props.clickCount} max={this.props.tillNextLevel}>60%</progress>
       </div>
     );

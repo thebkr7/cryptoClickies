@@ -37,7 +37,7 @@ class ItemStore extends Component {
               </ul>
             </div>
           </div>
-          <a onClick={() => {this.setState({active: !this.state.active})}} className="button-wood fontWhite">Upgrade Axe</a>
+          <a onClick={() => {this.props.upgradeLevel()}} className="button-wood fontWhite">Upgrade Axe</a>
         </div>
       </div>
     );
