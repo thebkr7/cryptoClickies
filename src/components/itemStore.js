@@ -33,7 +33,7 @@ class ItemStore extends Component {
             <div className="loot">
               <ul className="lootracker">
                 <li className="fontWhiteScores"><span>0</span> x <img src="http://adrianpayne.me/game/assets/images/gem.png"/></li>
-                <li className="fontWhiteScores"><span>0</span> x <img src="http://adrianpayne.me/game/assets/images/star.png"/></li>
+                <li className="fontWhiteScores"><span>{+this.props.level +1}</span> x <img src="http://adrianpayne.me/game/assets/images/star.png"/></li>
               </ul>
             </div>
           </div>

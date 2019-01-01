@@ -92,22 +92,25 @@ class App extends Component {
   }
 
   upgradeLevel = () => {
-    if (this.state.clickCount >= 1000 && this.state.level < 1) {
-      var updatedLevel = +this.state.level + 1;
-      localStorage.setItem('level', updatedLevel)
-      localStorage.setItem('clickCount', this.state.clickCount - 1000)
-      localStorage.setItem('clickRate', 2)
+    if (this.state.clickCount >= this.state.tillNextLevel) {
+      var updatedLevel = +this.state.level + 1; //hacky extra plus turns the string into an integer
+      var tillNextLevel = updatedLevel * 2000;
+      localStorage.setItem('level', updatedLevel);
+      localStorage.setItem('clickCount', this.state.clickCount - 1000);
+      localStorage.setItem('clickRate', 2);
+      localStorage.setItem('tillNextLevel', tillNextLevel)
       this.setState({
         level: updatedLevel,
         clickCount: this.state.clickCount - 1000,
         clickRate: +this.clickRate + 1,
+        tillNextLevel: tillNextLevel,
       });
       window.location.reload();
     }
   }
 
   render() {
-    
+
     //for confetti animation
     const config = {
       angle: 60,
@@ -129,7 +132,7 @@ class App extends Component {
                     <MediaQuery minDeviceWidth={1224}>
                       <br/>
                       <br/>
-                      <ItemStore clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />
+                      <ItemStore clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} level={this.state.level} />
                     </MediaQuery>
                     <MediaQuery maxDeviceWidth={1224}>
                       <ItemStoreMobile clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />                      
