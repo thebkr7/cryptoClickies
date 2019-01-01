@@ -7,6 +7,9 @@
   /* width: 6vh; */
 }
 
+.prevent-double-tap {
+  touch-action: manipulation;
+}
 
 
 .is-centered {

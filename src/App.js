@@ -116,13 +116,13 @@ class App extends Component {
       angle: 60,
       spread: 45,
       startVelocity: 10,
-      elementCount: 20,
+      elementCount: 5,
       decay: 0.95
     };
 
     return (
       <div>
-        <section class='hero has-background-black is-bold is-fullheight'>
+        <section class='hero has-background-black is-bold is-fullheight prevent-double-tap'>
 
           <div class="hero-body">
             <div class="container is-vertical-center">
