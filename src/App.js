@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 import localStorage from 'localStorage';
 import Confetti from 'react-dom-confetti';
+import MediaQuery from 'react-responsive';
 
 import Progress from './components/progress.js';
 import ItemStore from './components/itemStore.js';
+import ItemStoreMobile from './components/itemStoreMobile.js';
 
 import './App.css';
 import 'bulma/css/bulma.css';
@@ -105,7 +107,8 @@ class App extends Component {
   }
 
   render() {
-
+    
+    //for confetti animation
     const config = {
       angle: 60,
       spread: 45,
@@ -123,9 +126,14 @@ class App extends Component {
 
                 <div className='columns'>
                   <div className='column is-3'>
-                    <br/>
-                    <br/>
-                    <ItemStore clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />
+                    <MediaQuery minDeviceWidth={1224}>
+                      <br/>
+                      <br/>
+                      <ItemStore clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />
+                    </MediaQuery>
+                    <MediaQuery maxDeviceWidth={1224}>
+                      <ItemStoreMobile clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />                      
+                    </MediaQuery>
                   </div>
 
                   <div className='column'>

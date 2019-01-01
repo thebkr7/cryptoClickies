@@ -24,6 +24,7 @@
   background: rgba(0,0,0,0.8);
 }
 
+
 .lootracker li{
 	height:40px;
 }
@@ -62,14 +63,7 @@
   right:10px;
   top:75px;
 }
-.lootracker li{
-	height:40px;
-}
-.lootracker li img{
-	height:30px;
-	position:relative;
-	top:8px;
-}
+
 .gametile{
   width:70px;
   height:91px;  
@@ -123,7 +117,56 @@
 }
 
 
+//MOBILE SCORE
+// .sidebarMobile{
+//   margin: 0 auto
+// }
+.scoreBoardMobile{
+  width:300px;
+  height:70px;
+  margin-top:-34px;
+  padding:10px 10px 0;
+  text-align:center;
+  position:relative;
+  top:21px;
+  left:15px;
+  border-radius:8px;
+  background: rgba(36,178,250,0.8);
+}
 
+.button-wood-mobile{
+  width:110px;
+  padding: 5px 10px 5px 10px;
+  // display:block;  
+  // position:absolute;
+  left:17px;
+  bottom:8px;
+  line-height:20px;
+  font-size:18px;
+  text-decoration:none;
+  text-align:center;
+  color:#fff;
+  border-radius:8px;
+  border: 2px solid PeachPuff;
+  background: url('http://adrianpayne.me/game/assets/images/button.jpg') repeat;
+}
+.button-wood-mobile:hover{
+  color:Khaki;
+  border-color: Sienna;
+}
+.button-wood-mobile:active{
+  font-size:16px;
+  border-color: PeachPuff;
+}
+
+.margin-bottom {
+  margin-bottom: 40px;
+}
+
+
+
+
+// AXE CONFETTI
 
 .wrapper {
   width: 100%;
