@@ -30,45 +30,48 @@ class App extends Component {
       clicksSaved: false,
       level: 0,
       levels: [
-        {
-          clickRate: 1,
-          images: [level0Up, level0Down],
-        },
-        {
-          clickRate: 2,
-          images: [level1Up, level1Down, item1],
-        }
+        [level0Up, level0Down, item1], //SHOULD NOT BE ITEM ONE. IS A PLACEHOLDER
+        [level1Up, level1Down, item1],
       ],
       upImage: level0Up,
       downImage: level0Down,
     }
   }
 
+
+  /*
+  LOCAL STORAGE DATA STRUCTURE:
+    level:
+    clickCount:
+    clickRate:
+    tillNextLevel:
+  */
+
+
   componentDidMount() {
+    var returnUser = localStorage.getItem('returning');
     var clickCount = 0;
     var previousCount = localStorage.getItem('clickCount');
     var previousClickRate = localStorage.getItem('clickRate');
-    if (previousCount > 1) {
+    if (returnUser) {
       clickCount = previousCount;
       var level = localStorage.getItem('level');
-      if (level > 0) {
-        this.setState({
-          upImage: level1Up,
-          downImage: level1Down,
-          clickRate: previousClickRate,
-        });        
-      }
       if (previousClickRate > 0) {
         this.setState({
           level: level,
+          clickRate: previousClickRate,
           tillNextLevel: previousClickRate * 1000,
         });
-      } else {
+      } else { //This should never get hit but shall stay incase we allow leveling up without clickrate increases
         this.setState({
           level: level,
         });
       }
-    }
+    } else {
+      localStorage.setItem('level', 0);
+      localStorage.setItem('clickRate', 1);
+      localStorage.setItem('returning', true);
+    };
     this.setState({clickCount: clickCount});
   }
 
@@ -98,7 +101,7 @@ class App extends Component {
       localStorage.setItem('level', updatedLevel);
       localStorage.setItem('clickCount', this.state.clickCount - 1000);
       localStorage.setItem('clickRate', 2);
-      localStorage.setItem('tillNextLevel', tillNextLevel)
+      localStorage.setItem('tillNextLevel', tillNextLevel);
       this.setState({
         level: updatedLevel,
         clickCount: this.state.clickCount - 1000,
@@ -116,9 +119,14 @@ class App extends Component {
       angle: 60,
       spread: 45,
       startVelocity: 10,
-      elementCount: 5,
+      elementCount: this.state.clickRate,
       decay: 0.95
     };
+
+    // Levels (add infite), Welcome message, Levels are clearly defined and users know what they are trading for, *** ADD FUN COUNTER
+
+
+    console.log('this.state.levels[this.state.level][0]', this.state.levels[this.state.level][0])
 
     return (
       <div>
@@ -144,16 +152,16 @@ class App extends Component {
                       <figure class="image height-auto" onMouseDown={()=>{this.incrementClick()}} onMouseUp={()=>{this.mouseUp()}}>
                         <Confetti className='overlay' active={ this.state.active } config={ config }/>
                         {!this.state.mouseDown &&
-                          <img src={this.state.upImage} />
+                          <img src={this.state.levels[this.state.level][0]} />
                         }
                         {this.state.mouseDown &&
-                          <img src={this.state.downImage} />
+                          <img src={this.state.levels[this.state.level][1]} />
                         }
                       </figure>
                     </div>
-                    <h1 class="title has-text-grey is-vertical-center">
+                    {/* <h1 class="title has-text-grey is-vertical-center">
                       {this.state.clickCount}
-                    </h1>
+                    </h1> */}
                   </div>
                 </div>
 
