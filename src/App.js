@@ -7,6 +7,7 @@ import MediaQuery from 'react-responsive';
 import Progress from './components/progress.js';
 import ItemStore from './components/itemStore.js';
 import ItemStoreMobile from './components/itemStoreMobile.js';
+import Title from './components/title.js';
 
 import './App.css';
 import 'bulma/css/bulma.css';
@@ -95,7 +96,7 @@ class App extends Component {
   }
 
   upgradeLevel = () => {
-    if (this.state.clickCount >= this.state.tillNextLevel) {
+    if (this.state.clickCount >= this.state.tillNextLevel && this.state.level < 3) { // < 3 limits the levels to only 4 levels temporarily
       var updatedLevel = +this.state.level + 1; //hacky extra plus turns the string into an integer
       var tillNextLevel = updatedLevel * 2000;
       localStorage.setItem('level', updatedLevel);
@@ -119,55 +120,58 @@ class App extends Component {
       angle: 60,
       spread: 45,
       startVelocity: 10,
-      elementCount: this.state.clickRate,
+      elementCount: this.state.clickRate * 2,
       decay: 0.95
     };
 
     // Levels (add infite), Welcome message, Levels are clearly defined and users know what they are trading for, *** ADD FUN COUNTER
 
-
-    console.log('this.state.levels[this.state.level][0]', this.state.levels[this.state.level][0])
-
     return (
       <div>
         <section class='hero has-background-black is-bold is-fullheight prevent-double-tap'>
 
+              <Title clickCount={this.state.clickCount}/>
           <div class="hero-body">
             <div class="container is-vertical-center">
+              
 
-                <div className='columns'>
-                  <div className='column is-3'>
-                    <MediaQuery minDeviceWidth={1224}>
-                      <br/>
-                      <br/>
-                      <ItemStore clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} level={this.state.level} />
-                    </MediaQuery>
-                    <MediaQuery maxDeviceWidth={1224}>
-                      <ItemStoreMobile clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />                      
-                    </MediaQuery>
-                  </div>
+              <div className='columns'>
 
-                  <div className='column'>
-                    <div className='is-vertical-center'>
-                      <figure class="image height-auto" onMouseDown={()=>{this.incrementClick()}} onMouseUp={()=>{this.mouseUp()}}>
-                        <Confetti className='overlay' active={ this.state.active } config={ config }/>
-                        {!this.state.mouseDown &&
-                          <img src={this.state.levels[this.state.level][0]} />
-                        }
-                        {this.state.mouseDown &&
-                          <img src={this.state.levels[this.state.level][1]} />
-                        }
-                      </figure>
-                    </div>
-                    {/* <h1 class="title has-text-grey is-vertical-center">
-                      {this.state.clickCount}
-                    </h1> */}
+                <div className='column is-3'>
+                  <MediaQuery minDeviceWidth={1224}>
+                    <br/>
+                    <br/>
+                    <ItemStore clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} level={this.state.level} />
+                  </MediaQuery>
+                  <MediaQuery maxDeviceWidth={1224}>
+                    <ItemStoreMobile clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />                      
+                  </MediaQuery>
+                </div>
+
+                <div className='column'>
+                  <div className='is-vertical-center'>
+                    <figure class="image height-auto" onMouseDown={()=>{this.incrementClick()}} onMouseUp={()=>{this.mouseUp()}}>
+
+                      <Confetti className='overlay' active={ this.state.active } config={ config }/>
+                      
+                      {!this.state.mouseDown &&
+                        <img src={this.state.levels[this.state.level][0]} />
+                      }
+
+                      {this.state.mouseDown &&
+                        <img src={this.state.levels[this.state.level][1]} />
+                      }
+
+                    </figure>
                   </div>
                 </div>
 
+              </div>
             </div>
           </div>
+
           <Progress clickCount={this.state.clickCount} tillNextLevel={this.state.tillNextLevel} mouseDown={this.state.mouseDown} />
+        
         </section>
         
       </div>

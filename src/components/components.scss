@@ -1,6 +1,22 @@
 @import url(https://fonts.googleapis.com/css?family=Luckiest+Guy);
 
 
+//title.js
+.top-padding {
+  padding-top: 30px;
+}
+
+.fontWhiteTitle{
+  font-family: "Luckiest Guy", sans-serif;
+  position:center;
+  font-size: 66px;
+  color:white;
+  right:10px;
+}
+
+
+
+
 .margin-bottom {
   margin: 30px;
 }
@@ -117,6 +133,56 @@
 }
 
 
+
+
+
+//New progress bar
+// Progress Bars
+progress, progress[role] {
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+  // border: none;
+  // background-size: auto;
+  border-radius: 20px;
+  height: 40px;
+  width: 100%;
+}
+
+// The unordered list
+.skill-list {
+  list-style: none;
+  margin: 0;
+  padding: 1em;
+}
+
+// The list item
+.skill {
+  margin-bottom: 1em;
+  position: relative;
+  ::-webkit-progress-value { 
+    -webkit-animation: bar-fill 2s;
+    width: 0px;
+  }
+}
+
+// Style the bar colors
+.skill-1::-webkit-progress-value {
+  background: #24B2FA;
+}
+// Animation Keyframes
+@-webkit-keyframes bar-fill {
+  0% { width: 0; }
+}
+
+@keyframes bar-fill {
+  0% { width: 0; }
+}
+
+
+
+
+
 //MOBILE SCORE
 // .sidebarMobile{
 //   margin: 0 auto
@@ -163,53 +229,3 @@
   margin-bottom: 40px;
 }
 
-
-
-
-// AXE CONFETTI
-
-.wrapper {
-  width: 100%;
-  height: 430px;
-}
-
-.explode-button {
-  cursor: pointer;
-  font-size: 20px;
-  padding: 10px;
-  background: grey;
-  height: 22px;
-  width: 65px;
-  position: absolute;
-}
-
-.explosion-wrapper {
-    width: 100%;
-    height: 100%;
-}
-
-.emitter {
-    position: absolute;
-    visibility: hidden;
-    background-color: black;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-10px) translateY(-10px);
-}
-
-.sprite-container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow: visible;
-    z-index: 5000;
-    pointer-events: none;
-}
-
-.sprite {
-    position: absolute;
-    pointer-events: none;
-}
