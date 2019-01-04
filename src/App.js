@@ -15,7 +15,6 @@ import level0Up from './assets/waitforclick.png';
 import level0Down from './assets/clicked.png';
 import level1Up from './assets/level1Up.png';
 import level1Down from './assets/level1Down.png';
-import item1 from './assets/item1.png';
 // import gems from './assets/gems.png';
 
 
@@ -31,8 +30,8 @@ class App extends Component {
       clicksSaved: false,
       level: 0,
       levels: [
-        [level0Up, level0Down, item1], //SHOULD NOT BE ITEM ONE. IS A PLACEHOLDER
-        [level1Up, level1Down, item1],
+        [level0Up, level0Down], //SHOULD NOT BE ITEM ONE. IS A PLACEHOLDER
+        [level1Up, level1Down],
       ],
       upImage: level0Up,
       downImage: level0Down,
@@ -128,25 +127,23 @@ class App extends Component {
 
     return (
       <div>
-        <section class='hero has-background-black is-bold is-fullheight prevent-double-tap'>
+        <section class='hero tile is-bold is-fullheight prevent-double-tap'>
 
-              <Title clickCount={this.state.clickCount}/>
+          <Title clickCount={this.state.clickCount} />
+
           <div class="hero-body">
             <div class="container is-vertical-center">
               
 
               <div className='columns'>
 
-                <div className='column is-3'>
-                  <MediaQuery minDeviceWidth={1224}>
+                <MediaQuery minDeviceWidth={1224}>
+                  <div className='column is-3'>
                     <br/>
                     <br/>
                     <ItemStore clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} level={this.state.level} />
-                  </MediaQuery>
-                  <MediaQuery maxDeviceWidth={1224}>
-                    <ItemStoreMobile clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />                      
-                  </MediaQuery>
-                </div>
+                  </div>
+                </MediaQuery>
 
                 <div className='column'>
                   <div className='is-vertical-center'>
@@ -171,6 +168,10 @@ class App extends Component {
           </div>
 
           <Progress clickCount={this.state.clickCount} tillNextLevel={this.state.tillNextLevel} mouseDown={this.state.mouseDown} />
+
+          <MediaQuery maxDeviceWidth={1224}>
+            <ItemStoreMobile clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} />                      
+          </MediaQuery>
         
         </section>
         

@@ -1,3 +1,8 @@
+.tile {
+  background-image: url('./assets/tilebackground.png');
+}
+
+
 .overlay {
   /* background: red;
   height: 6vh; */

@@ -14,8 +14,20 @@
   right:10px;
 }
 
+@media screen and (min-width: 800px) {
+  .half-width {
+    width: 50%;
+  }
+}
 
 
+
+
+
+.axe {
+  position:absolute;
+  right:20px;
+}
 
 .margin-bottom {
   margin: 30px;
@@ -55,7 +67,7 @@
   position:absolute;
   font-size:26px;
   color:white;
-  right:10px;
+  right:24px;
 }
 
 .fontWhiteScores{
