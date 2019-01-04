@@ -8,6 +8,7 @@ import Progress from './components/progress.js';
 import ItemStore from './components/itemStore.js';
 import ItemStoreMobile from './components/itemStoreMobile.js';
 import Title from './components/title.js';
+import About from './components/about.js';
 
 import './App.css';
 import 'bulma/css/bulma.css';
@@ -46,6 +47,7 @@ class AppWindow extends Component {
       ],
       upImage: level0Up,
       downImage: level0Down,
+      aboutOpen: false,
     }
   }
 
@@ -139,6 +141,12 @@ class AppWindow extends Component {
     }
   }
 
+  toggleAbout = () => {
+    this.setState({
+      aboutOpen: !this.state.aboutOpen,
+    });
+  }
+
   render() {
 
     //for confetti animation
@@ -152,7 +160,7 @@ class AppWindow extends Component {
 
     return (
       <div>
-        <a className='topright title is-6 has-text-white' > About </a>
+        <a onClick={() => {this.toggleAbout()}} className='topright title is-6 has-text-white' > About </a>
         
         <section class='hero tile is-bold is-fullheight prevent-double-tap'>
 
@@ -221,6 +229,10 @@ class AppWindow extends Component {
           </MediaQuery>
         
         </section>
+
+        {this.state.aboutOpen &&
+          <About toggleAbout={this.toggleAbout}/>
+        }
         
       </div>
     );

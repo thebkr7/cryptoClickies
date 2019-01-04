@@ -19,7 +19,6 @@ class ItemStore extends Component {
 
 
   render() {
-console.log('eve', this.props.level)
     return (
       <div>
         {/* <Manager>
