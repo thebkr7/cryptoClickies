@@ -5,6 +5,7 @@
   "dependencies": {
     "bulma": "^0.7.2",
     "font-awesome": "^4.7.0",
+    "gitter-sidecar": "^1.4.2",
     "localStorage": "^1.0.4",
     "node-sass": "^4.11.0",
     "react": "^16.7.0",

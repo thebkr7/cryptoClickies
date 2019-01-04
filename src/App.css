@@ -5,9 +5,16 @@
   font-size: 18px;
 }
 
-
 .tile {
   background-image: url('./assets/tilebackground.png');
+}
+
+.gitter-open-chat-button {
+  background-color: #209cee;
+}
+  
+.gitter-open-chat-button:hover {
+  background-color: hsl(217, 71%, 53%);
 }
 
 

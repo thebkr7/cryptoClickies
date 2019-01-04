@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import localStorage from 'localStorage';
 import Confetti from 'react-dom-confetti';
 import MediaQuery from 'react-responsive';
+import Sidecar from 'gitter-sidecar';
 
 import Progress from './components/progress.js';
 import ItemStore from './components/itemStore.js';
@@ -124,6 +125,12 @@ class App extends Component {
   }
 
   render() {
+
+    var myChat = new Sidecar({
+      room: 'CryptoClickies/community',
+      style: 'gitter-open-chat-button'
+    });
+
     //for confetti animation
     const config = {
       angle: 60,
