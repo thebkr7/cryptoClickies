@@ -76,7 +76,6 @@ class App extends Component {
   }
 
   incrementClick = () => {
-    // console.log('clickRate', this.state.clickRate)
     localStorage.setItem('clickCount', this.state.clickCount);
     var clickCount = +this.state.clickCount + +this.state.clickRate
     this.setState({
@@ -88,7 +87,6 @@ class App extends Component {
   }
 
   incrementClickMobile = () => {
-    // console.log('clickRate', this.state.clickRate)
     localStorage.setItem('clickCount', this.state.clickCount);
     var clickCount = +this.state.clickCount + +this.state.clickRate
     this.setState({
@@ -97,7 +95,7 @@ class App extends Component {
       clicksSaved: false,
       active: !this.state.active,
     });
-    setTimeout(this.mouseUp(), 500);
+    setTimeout(() => {this.mouseUp()}, 50);
   }
 
   mouseUp = () => {
@@ -126,7 +124,6 @@ class App extends Component {
   }
 
   render() {
-
     //for confetti animation
     const config = {
       angle: 60,
@@ -136,11 +133,10 @@ class App extends Component {
       decay: 0.95
     };
 
-    // Levels (add infite), Welcome message, Levels are clearly defined and users know what they are trading for, *** ADD FUN COUNTER
-
     return (
       <div>
-        <div className='topright'> About </div>
+        <a className='topright title is-6 has-text-white' > About </a>
+        
         <section class='hero tile is-bold is-fullheight prevent-double-tap'>
 
           <Title clickCount={this.state.clickCount} />
@@ -148,7 +144,6 @@ class App extends Component {
           <div class="hero-body">
             <div class="container is-vertical-center">
               
-
               <div className='columns'>
 
                 <MediaQuery minDeviceWidth={1224}>
@@ -161,19 +156,40 @@ class App extends Component {
 
                 <div className='column'>
                   <div className='is-vertical-center'>
-                    <figure class="image height-auto" onTap={()=>{this.incrementClickMobile()}} onMouseDown={()=>{this.incrementClick()}} onMouseUp={()=>{this.mouseUp()}}>
 
-                      <Confetti className='overlay' active={ this.state.active } config={ config }/>
-                      
-                      {!this.state.mouseDown &&
-                        <img src={this.state.levels[this.state.level][0]} />
-                      }
+                    <MediaQuery minDeviceWidth={1224}>
+                      <figure class="image height-auto" onMouseDown={()=>{this.incrementClick()}} onMouseUp={()=>{this.mouseUp()}}>
 
-                      {this.state.mouseDown &&
-                        <img src={this.state.levels[this.state.level][1]} />
-                      }
+                        <Confetti className='overlay' active={ this.state.active } config={ config }/>
+                        
+                        {!this.state.mouseDown &&
+                          <img src={this.state.levels[this.state.level][0]} />
+                        }
 
-                    </figure>
+                        {this.state.mouseDown &&
+                          <img src={this.state.levels[this.state.level][1]} />
+                        }
+
+                      </figure>
+                    </MediaQuery>
+
+                    {/* For mobile had to set timeout to show the diggin animation */}
+                    <MediaQuery maxDeviceWidth={1224}>
+                      <figure class="image height-auto" onClick={()=>{this.incrementClickMobile()}} >
+
+                        <Confetti className='overlay' active={ this.state.active } config={ config }/>
+                        
+                        {!this.state.mouseDown &&
+                          <img src={this.state.levels[this.state.level][0]} />
+                        }
+
+                        {this.state.mouseDown &&
+                          <img src={this.state.levels[this.state.level][1]} />
+                        }
+
+                      </figure>
+                    </MediaQuery>
+
                   </div>
                 </div>
 
