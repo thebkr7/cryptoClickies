@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Manager, Reference, Popper } from 'react-popper';
+// import { Manager, Reference, Popper } from 'react-popper';
 import './components.scss';
 import Axe0 from '../assets/axe_level0.png';
 import Axe1 from '../assets/axe_level1.png';
 import Axe2 from '../assets/axe_level2.png';
 import Axe3 from '../assets/axe_level3.png';
-
+import Axe4 from '../assets/axe_level4.png';
 
 
 class ItemStore extends Component {
@@ -13,12 +13,13 @@ class ItemStore extends Component {
     super(props);
     this.state = {
       active: false,
+      axes: [Axe0, Axe1, Axe2, Axe3, Axe4]
     }
   }
 
 
   render() {
-
+console.log('eve', this.props.level)
     return (
       <div>
         {/* <Manager>
@@ -54,10 +55,12 @@ class ItemStore extends Component {
             <br />
             {/* <div className="score">{this.props.clickCount}</div> */}
               <figure className="image is-128x128"> 
-                <img className='axe' src={Axe0} />
+                <img className='axe' src={this.state.axes[+this.props.level +1]} />
               </figure>
           </div>
-          <a onClick={() => {this.props.upgradeLevel()}} className="button-wood fontWhite">Upgrade Axe</a>
+          {this.props.furtherUpgrades &&
+            <a onClick={() => {this.props.upgradeLevel()}} className="button-wood fontWhite">Upgrade Axe</a>
+          }
         </div>
       </div>
     );

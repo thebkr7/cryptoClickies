@@ -11,10 +11,17 @@ import Title from './components/title.js';
 
 import './App.css';
 import 'bulma/css/bulma.css';
-import level0Up from './assets/waitforclick.png';
-import level0Down from './assets/clicked.png';
-import level1Up from './assets/level1Up.png';
-import level1Down from './assets/level1Down.png';
+import level0Up from './assets/level0_wait.png';
+import level0Down from './assets/level0_clicked.png';
+import level1Up from './assets/level2_wait.png';
+import level1Down from './assets/level2_clicked.png';
+import level3Up from './assets/level3_wait.png';
+import level3Down from './assets/level3_clicked.png';
+import level4Up from './assets/level4_wait.png';
+import level4Down from './assets/level4_clicked.png';
+import level5Up from './assets/level5_wait.png';
+import level5Down from './assets/level5_clicked.png';
+// import level2Down from './assets/level1Down.png';
 // import gems from './assets/gems.png';
 
 
@@ -26,12 +33,16 @@ class AppWindow extends Component {
       clickCount: 0,
       clickRate: 1,
       tillNextLevel: 1000,
+      furtherUpgrades: true,
       mouseDown: false,
       clicksSaved: false,
       level: 0,
       levels: [
         [level0Up, level0Down], //SHOULD NOT BE ITEM ONE. IS A PLACEHOLDER
         [level1Up, level1Down],
+        [level3Up, level3Down],
+        [level4Up, level4Down],
+        [level5Up, level5Down],
       ],
       upImage: level0Up,
       downImage: level0Down,
@@ -106,18 +117,23 @@ class AppWindow extends Component {
   }
 
   upgradeLevel = () => {
-    if (this.state.clickCount >= this.state.tillNextLevel && this.state.level < 3) { // < 3 limits the levels to only 4 levels temporarily
+    if (this.state.clickCount >= this.state.tillNextLevel && this.state.level < 4) { // < 3 limits the levels to only 4 levels temporarily
       var updatedLevel = +this.state.level + 1; //hacky extra plus turns the string into an integer
       var tillNextLevel = updatedLevel * 2000;
+      var furtherUpgrades = true;
       localStorage.setItem('level', updatedLevel);
       localStorage.setItem('clickCount', this.state.clickCount - 1000);
       localStorage.setItem('clickRate', 2);
       localStorage.setItem('tillNextLevel', tillNextLevel);
+      if (updatedLevel >= 3) {
+        furtherUpgrades = false;
+      }
       this.setState({
         level: updatedLevel,
         clickCount: this.state.clickCount - 1000,
         clickRate: +this.clickRate + 1,
         tillNextLevel: tillNextLevel,
+        furtherUpgrades: furtherUpgrades,
       });
       window.location.reload();
     }
@@ -151,7 +167,7 @@ class AppWindow extends Component {
                   <div className='column is-3'>
                     <br/>
                     <br/>
-                    <ItemStore clickCount={this.state.clickCount} upgradeLevel={this.upgradeLevel} level={this.state.level} />
+                    <ItemStore clickCount={this.state.clickCount} level={this.state.level} furtherUpgrades={this.state.furtherUpgrades} upgradeLevel={this.upgradeLevel} level={this.state.level} />
                   </div>
                 </MediaQuery>
 
