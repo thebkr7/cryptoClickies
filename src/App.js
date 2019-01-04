@@ -87,6 +87,19 @@ class App extends Component {
     });
   }
 
+  incrementClickMobile = () => {
+    // console.log('clickRate', this.state.clickRate)
+    localStorage.setItem('clickCount', this.state.clickCount);
+    var clickCount = +this.state.clickCount + +this.state.clickRate
+    this.setState({
+      clickCount: clickCount,
+      mouseDown: true,
+      clicksSaved: false,
+      active: !this.state.active,
+    });
+    setTimeout(this.mouseUp(), 500);
+  }
+
   mouseUp = () => {
     this.setState({
       mouseDown: false,
@@ -127,6 +140,7 @@ class App extends Component {
 
     return (
       <div>
+        <div className='topright'> About </div>
         <section class='hero tile is-bold is-fullheight prevent-double-tap'>
 
           <Title clickCount={this.state.clickCount} />
@@ -147,7 +161,7 @@ class App extends Component {
 
                 <div className='column'>
                   <div className='is-vertical-center'>
-                    <figure class="image height-auto" onMouseDown={()=>{this.incrementClick()}} onMouseUp={()=>{this.mouseUp()}}>
+                    <figure class="image height-auto" onTap={()=>{this.incrementClickMobile()}} onMouseDown={()=>{this.incrementClick()}} onMouseUp={()=>{this.mouseUp()}}>
 
                       <Confetti className='overlay' active={ this.state.active } config={ config }/>
                       
