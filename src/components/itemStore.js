@@ -50,7 +50,8 @@ class ItemStore extends Component {
           <div className="stone gametile"></div>
           <div className="stone gametile"></div>
           <div className="scoreBoard">
-            <div className="fontWhite">Axes</div>
+            <div className="fontWhite is-centered">Upgrade <br/>Axe</div>
+            <br />
             <br />
             {/* <div className="score">{this.props.clickCount}</div> */}
               <figure className="image is-128x128"> 
