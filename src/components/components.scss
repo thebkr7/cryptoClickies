@@ -15,6 +15,25 @@
 }
 
 @media screen and (min-width: 800px) {
+  .fontWhiteTitle{
+    font-family: "Luckiest Guy", sans-serif;
+    position:center;
+    font-size: 66px;
+    color:white;
+    right:10px;
+    margin-top: 50px;
+  }
+}
+
+.fontWhiteCircle{
+  font-family: "Luckiest Guy", sans-serif;
+  position: relative;;
+  font-size: 26px;
+  color:white;
+}
+
+
+@media screen and (min-width: 800px) {
   .half-width {
     width: 50%;
   }

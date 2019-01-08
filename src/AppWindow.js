@@ -164,7 +164,7 @@ class AppWindow extends Component {
         
         <section class='hero tile is-bold is-fullheight prevent-double-tap'>
 
-          <Title clickCount={this.state.clickCount} />
+          <Title clickCount={this.state.clickCount} tillNextLevel={this.state.tillNextLevel} level={this.state.level}/>
 
           <div class="hero-body">
             <div class="container is-vertical-center">
@@ -175,7 +175,7 @@ class AppWindow extends Component {
                   <div className='column is-3'>
                     <br/>
                     <br/>
-                    <ItemStore clickCount={this.state.clickCount} level={this.state.level} furtherUpgrades={this.state.furtherUpgrades} upgradeLevel={this.upgradeLevel} level={this.state.level} />
+                    <ItemStore clickCount={this.state.clickCount} level={this.state.level} furtherUpgrades={this.state.furtherUpgrades} upgradeLevel={this.upgradeLevel} />
                   </div>
                 </MediaQuery>
 
