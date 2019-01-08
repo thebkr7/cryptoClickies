@@ -121,7 +121,7 @@
   cursor: pointer;
 }
 .stone{
-  background: url('http://adrianpayne.me/game/assets/images/stone.png') no-repeat;
+  background: url('../assets/stone.png') no-repeat;
 }
 .gem{
   width:46px;
@@ -152,7 +152,7 @@
   color:#fff;
   border-radius:8px;
   border: 2px solid PeachPuff;
-  background: url('http://adrianpayne.me/game/assets/images/button.jpg') repeat;
+  background: url('../assets/button.jpg') repeat;
 }
 .button-wood:hover{
   color:Khaki;
