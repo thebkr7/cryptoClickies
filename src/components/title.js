@@ -22,7 +22,7 @@ class Title extends Component {
   }
 
   render() {
-    var largeClickCount = this.props.clickCount.toString();
+    var largeClickCount = this.props.clickCount ? this.props.clickCount.toString() : '';
     if (this.props.clickCount < 10) {
       largeClickCount = '0000' + this.props.clickCount.toString()
     }
