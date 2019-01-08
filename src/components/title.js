@@ -22,18 +22,19 @@ class Title extends Component {
   }
 
   render() {
+    var clickCount = this.props.clickCount ? this.props.clickCount : '0';
     var largeClickCount = this.props.clickCount ? this.props.clickCount.toString() : '';
     if (this.props.clickCount < 10) {
-      largeClickCount = '0000' + this.props.clickCount.toString()
+      largeClickCount = '0000' + clickCount.toString()
     }
     else if (this.props.clickCount < 100) {
-      largeClickCount = '000' + this.props.clickCount.toString()
+      largeClickCount = '000' + clickCount.toString()
     }
     else if (this.props.clickCount < 1000) {
-      largeClickCount = '00' + this.props.clickCount.toString()
+      largeClickCount = '00' + clickCount.toString()
     }
     else if (this.props.clickCount < 10000) {
-      largeClickCount = '0' + this.props.clickCount.toString()
+      largeClickCount = '0' + clickCount.toString()
     }
 
     var levelPercentage = ( this.props.level + 1 ) / 5 * 100;
