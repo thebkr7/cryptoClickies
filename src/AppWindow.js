@@ -160,7 +160,7 @@ class AppWindow extends Component {
 
     return (
       <div>
-        <a onClick={() => {this.toggleAbout()}} className='topright title is-6 has-text-white' > About </a>
+        <a onClick={() => {this.toggleAbout()}} className='topright title is-6 has-text-white' >About</a>
         
         <section class='hero tile is-bold is-fullheight prevent-double-tap'>
 
