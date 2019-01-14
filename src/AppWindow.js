@@ -9,6 +9,7 @@ import ItemStore from './components/itemStore.js';
 import ItemStoreMobile from './components/itemStoreMobile.js';
 import Title from './components/title.js';
 import About from './components/about.js';
+import Share from './components/share.js';
 
 import './App.css';
 import 'bulma/css/bulma.css';
@@ -48,6 +49,7 @@ class AppWindow extends Component {
       upImage: level0Up,
       downImage: level0Down,
       aboutOpen: false,
+      shareOpen: false,
     }
   }
 
@@ -60,6 +62,9 @@ class AppWindow extends Component {
     tillNextLevel:
   */
 
+  // componentWillMount() {
+    
+  // }
 
   componentDidMount() {
     var returnUser = localStorage.getItem('returning');
@@ -91,12 +96,22 @@ class AppWindow extends Component {
   incrementClick = () => {
     localStorage.setItem('clickCount', this.state.clickCount);
     var clickCount = +this.state.clickCount + +this.state.clickRate
-    this.setState({
-      clickCount: clickCount,
-      mouseDown: true,
-      clicksSaved: false,
-      active: !this.state.active,
-    });
+    if (this.state.clickCount === 98) {
+      this.setState({
+        clickCount: clickCount,
+        mouseDown: true,
+        clicksSaved: false,
+        active: !this.state.active,
+        shareOpen: true,
+      });
+    } else {
+      this.setState({
+        clickCount: clickCount,
+        mouseDown: true,
+        clicksSaved: false,
+        active: !this.state.active,
+      });
+    }
   }
 
   incrementClickMobile = () => {
@@ -145,6 +160,24 @@ class AppWindow extends Component {
     this.setState({
       aboutOpen: !this.state.aboutOpen,
     });
+  }
+
+  toggleShare = () => {
+    this.setState({
+      shareOpen: !this.state.shareOpen,
+    });
+  }
+
+  sharedReward = () => {
+    var hasShared = localStorage.getItem('hasShared');
+    if (!hasShared) {
+      var newClickRate = +this.state.clickRate * 2;
+      localStorage.setItem('clickRate', newClickRate);
+      localStorage.setItem('hasShared', true);
+      this.setState({
+        clickRate: newClickRate,
+      });
+    }
   }
 
   render() {
@@ -232,6 +265,10 @@ class AppWindow extends Component {
 
         {this.state.aboutOpen &&
           <About toggleAbout={this.toggleAbout}/>
+        }
+
+        {this.state.shareOpen &&
+          <Share toggleShare={this.toggleShare} sharedReward={this.sharedReward} />
         }
         
       </div>

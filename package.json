@@ -14,7 +14,8 @@
     "react-dom-confetti": "0.0.10",
     "react-popper": "^1.3.2",
     "react-responsive": "^6.0.1",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "react-share": "^2.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
